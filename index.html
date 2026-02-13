@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Abinaya | Valentine's Day 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="hearts-background" id="heartsContainer"></div>
+
+    <!-- Progress Indicator -->
+    <div class="progress-dots" id="progressDots">
+        <span class="progress-dot active"></span>
+        <span class="progress-dot"></span>
+        <span class="progress-dot"></span>
+        <span class="progress-dot"></span>
+        <span class="progress-dot"></span>
+        <span class="progress-dot"></span>
+    </div>
+
+    <!-- Screen 1: Welcome -->
+    <div class="screen active" id="screen-1">
+        <div class="screen-content">
+            <div class="envelope-icon">💌</div>
+            <h1 class="screen-title">Something special<br>just for you my Love</h1>
+            <button class="tap-button" onclick="nextScreen(2)">Tap here</button>
+        </div>
+    </div>
+
+    <!-- Screen 2: For You -->
+    <div class="screen" id="screen-2">
+        <div class="screen-content">
+            <div class="heart-drawing">
+                <svg viewBox="0 0 200 200" class="animated-heart">
+                    <path d="M100,170 C100,170 30,120 30,80 C30,50 50,30 70,30 C85,30 95,40 100,50 C105,40 115,30 130,30 C150,30 170,50 170,80 C170,120 100,170 100,170 Z" 
+                          fill="#e91e63" stroke="#c2185b" stroke-width="3"/>
+                    <path class="heart-fill" d="M100,170 C100,170 30,120 30,80 C30,50 50,30 70,30 C85,30 95,40 100,50 C105,40 115,30 130,30 C150,30 170,50 170,80 C170,120 100,170 100,170 Z" 
+                          fill="#4CAF50"/>
+                </svg>
+            </div>
+            <h1 class="screen-title pink-text">என் வாழ்க்கையின் வருங்கால துணைவிக்கு<br/>இனிய வாலென்டைன்ஸ் நாள் வாழ்த்துகள்.</h1>
+            <button class="tap-button outline" onclick="nextScreen(3)">Tap here</button>
+        </div>
+    </div>
+
+    <!-- Screen 3: Reminders -->
+    <div class="screen" id="screen-3">
+        <div class="screen-content">
+            <h1 class="screen-title pink-text">Little reminders of how<br>much you mean to me.</h1>
+            <p class="subtitle-text">I hope this makes you smile</p>
+            
+            <div class="card-grid">
+                <div class="reminder-card" onclick="showModal('note')">
+                    <div class="card-icon">💌</div>
+                    <div class="card-label">Note for you</div>
+                </div>
+                <div class="reminder-card" onclick="showModal('song')">
+                    <div class="card-icon">🎤</div>
+                    <div class="card-label">Song</div>
+                </div>
+                <div class="reminder-card" onclick="showModal('memories')">
+                    <div class="card-icon">📷</div>
+                    <div class="card-label">Memories</div>
+                </div>
+            </div>
+            
+            <button class="tap-button" onclick="nextScreen(4)">Continue</button>
+        </div>
+    </div>
+
+    <!-- Screen 4: What I Love -->
+    <div class="screen" id="screen-4">
+        <div class="screen-content">
+            <h1 class="screen-title">What I Love About You</h1>
+            <div class="love-list">
+                <div class="love-item">
+                    <span class="love-emoji">✨</span>
+                    <p>Your beautiful smile that lights up my world</p>
+                </div>
+                <div class="love-item">
+                    <span class="love-emoji">💕</span>
+                    <p>Your kind heart and gentle spirit</p>
+                </div>
+                <div class="love-item">
+                    <span class="love-emoji">🌟</span>
+                    <p>The way you make everything better</p>
+                </div>
+                <div class="love-item">
+                    <span class="love-emoji">💖</span>
+                    <p>How you love me unconditionally</p>
+                </div>
+                <div class="love-item">
+                    <span class="love-emoji">🌹</span>
+                    <p>Your strength and grace in everything</p>
+                </div>
+            </div>
+            <button class="tap-button" onclick="nextScreen(6)">Tap here</button>
+        </div>
+    </div>
+
+   
+
+    <!-- Screen 6: Final Message -->
+    <div class="screen" id="screen-6">
+        <div class="screen-content">
+            <div class="final-heart">❤️</div>
+            <h1 class="screen-title">My Dearest Abinaya</h1>
+            <p class="final-message">
+                You are my today and all of my tomorrows. You are the reason I believe in love, 
+                and the person who makes my heart feel complete.
+            </p>
+            <p class="final-message">
+                This Valentine's Day, I want you to know that choosing you was the best decision 
+                of my life, and I promise to choose you every single day that follows.
+            </p>
+            <div class="signature">
+                <p>Forever yours,</p>
+                <p class="signature-name">With all my love ❤️</p>
+            </div>
+            <button class="tap-button" onclick="restartExperience()">Start Over</button>
+        </div>
+    </div>
+
+    <!-- Modal for Reminders -->
+    <div class="modal" id="noteModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('note')">✕</button>
+            <h2>💌 A Love Note For You</h2>
+            <p class="modal-text">
+                My Dearest Abinaya,
+            </p>
+            <p class="modal-text">
+                Every moment with you is a treasure. Your love fills my life with joy, warmth, and meaning. 
+                You are not just my partner, but my best friend, my confidant, and my greatest blessing.
+            </p>
+            <p class="modal-text">
+                Thank you for being you - for your kindness, your smile, your laughter, and the way you make 
+                every ordinary day feel extraordinary. I am so grateful to have you in my life.
+            </p>
+            <p class="modal-text">
+                I love you more than words can express, today and always. ❤️
+            </p>
+            <p class="modal-text signature-style">
+                Forever yours,<br>
+                Your Love
+            </p>
+        </div>
+    </div>
+
+    <div class="modal" id="songModal">
+        <div class="modal-content song-modal">
+            <button class="close-btn" onclick="closeModal('song')">✕</button>
+            <h3>🎤 Our Special Song</h3>
+            <div class="video-container">
+                <video id="songVideo" controls controlsList="nodownload" poster="">
+                    <source src="Video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+           
+        </div>
+        <div class="music-note-container">
+            <div class="music-note">🎵 💕 🎵</div>
+        </div>
+    </div>
+
+    <div class="modal" id="memoriesModal">
+        <div class="modal-content memories-modal">
+            <button class="close-btn" onclick="closeModal('memories')">✕</button>
+            <h2>📷 Our Beautiful Memories</h2>
+            <div class="memories-gallery">
+                <img src="image.jpeg" alt="Our Memory" class="memory-image">
+            </div>
+           
+        </div>
+        <div class="memory-hearts-container">
+            <div class="memory-hearts">💕 💖 💗 💝</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
