@@ -67,6 +67,139 @@ function nextScreen(screenNumber) {
     createHeartBurst();
 }
 
+// Handle Yes button click - Screen 7
+function handleYes() {
+    // Hide question step
+    const questionStep = document.getElementById('questionStep');
+    if (questionStep) {
+        questionStep.style.display = 'none';
+    }
+    
+    // Show gift step
+    const giftStep = document.getElementById('giftStep');
+    if (giftStep) {
+        giftStep.style.display = 'block';
+        giftStep.style.animation = 'fadeInUp 0.8s ease-out';
+    }
+    
+    // Create heart burst
+    createHeartBurst();
+    
+    // Scroll to top
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Show celebration after gift reveal
+function showCelebration() {
+    // Hide gift step
+    const giftStep = document.getElementById('giftStep');
+    if (giftStep) {
+        giftStep.style.display = 'none';
+    }
+    
+    // Show celebration step
+    const celebrationStep = document.getElementById('celebrationStep');
+    if (celebrationStep) {
+        celebrationStep.style.display = 'block';
+        celebrationStep.style.animation = 'fadeInUp 0.8s ease-out';
+    }
+    
+    // Create massive heart burst
+    createMassiveHeartBurst();
+    
+    // Scroll to top
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Move No button away from cursor - keep within screen bounds
+function moveNoButton() {
+    const noButton = document.getElementById('noButton');
+    const questionStep = document.getElementById('questionStep');
+    
+    if (!noButton || !questionStep) return;
+    
+    // Get viewport dimensions
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const buttonRect = noButton.getBoundingClientRect();
+    
+    // Calculate safe boundaries (keep button fully within visible viewport)
+    const padding = 20;
+    const minX = padding;
+    const maxX = viewportWidth - buttonRect.width - padding;
+    const minY = 200; // Keep below the question text
+    const maxY = viewportHeight - buttonRect.height - padding - 80;
+    
+    // Generate random position within safe boundaries
+    const randomX = minX + Math.random() * (maxX - minX);
+    const randomY = minY + Math.random() * (maxY - minY);
+    
+    // Apply fixed positioning to stay within viewport
+    noButton.style.position = 'fixed';
+    noButton.style.left = randomX + 'px';
+    noButton.style.top = randomY + 'px';
+    noButton.style.transition = 'all 0.3s ease';
+    noButton.style.zIndex = '100';
+    
+    // Add shake animation
+    noButton.style.animation = 'shake 0.5s ease';
+    
+    setTimeout(() => {
+        noButton.style.animation = '';
+    }, 500);
+}
+
+// Create massive heart burst for celebration
+function createMassiveHeartBurst() {
+    const heartEmojis = ['❤️', '💕', '💖', '💗', '💝', '💘', '💓', '💞', '💟', '♥️'];
+    const container = document.body;
+    
+    for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+            const heart = document.createElement('div');
+            heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.style.position = 'fixed';
+            heart.style.left = '50%';
+            heart.style.top = '50%';
+            heart.style.fontSize = (30 + Math.random() * 40) + 'px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '9999';
+            
+            const angle = (Math.PI * 2 * i) / 30;
+            const velocity = 150 + Math.random() * 150;
+            const tx = Math.cos(angle) * velocity;
+            const ty = Math.sin(angle) * velocity;
+            
+            container.appendChild(heart);
+            
+            // Animate
+            heart.animate([
+                { 
+                    transform: 'translate(-50%, -50%) scale(0) rotate(0deg)',
+                    opacity: 1
+                },
+                { 
+                    transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(2) rotate(${Math.random() * 720}deg)`,
+                    opacity: 0
+                }
+            ], {
+                duration: 2000,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+            });
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }, i * 50);
+    }
+}
+
 // Update progress dots
 function updateProgressDots() {
     const dots = document.querySelectorAll('.progress-dot');

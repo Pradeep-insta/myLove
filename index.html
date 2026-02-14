@@ -21,6 +21,7 @@
         <span class="progress-dot"></span>
         <span class="progress-dot"></span>
         <span class="progress-dot"></span>
+        <span class="progress-dot"></span>
     </div>
 
     <!-- Screen 1: Welcome -->
@@ -36,14 +37,29 @@
     <div class="screen" id="screen-2">
         <div class="screen-content">
             <div class="heart-drawing">
-                <svg viewBox="0 0 200 200" class="animated-heart">
-                    <path d="M100,170 C100,170 30,120 30,80 C30,50 50,30 70,30 C85,30 95,40 100,50 C105,40 115,30 130,30 C150,30 170,50 170,80 C170,120 100,170 100,170 Z" 
-                          fill="#e91e63" stroke="#c2185b" stroke-width="3"/>
-                    <path class="heart-fill" d="M100,170 C100,170 30,120 30,80 C30,50 50,30 70,30 C85,30 95,40 100,50 C105,40 115,30 130,30 C150,30 170,50 170,80 C170,120 100,170 100,170 Z" 
-                          fill="#4CAF50"/>
-                </svg>
+                <div class="animated-heart-container">
+                    <svg viewBox="0 0 200 200" class="animated-heart">
+                        <defs>
+                            <linearGradient id="heartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.95" />
+                            </linearGradient>
+                        </defs>
+                        <path class="heart-outline" d="M100,170 C100,170 30,120 30,80 C30,50 50,30 70,30 C85,30 95,40 100,50 C105,40 115,30 130,30 C150,30 170,50 170,80 C170,120 100,170 100,170 Z" 
+                              fill="none" stroke="rgba(255, 255, 255, 0.9)" stroke-width="5"/>
+                        <path class="heart-fill" d="M100,170 C100,170 30,120 30,80 C30,50 50,30 70,30 C85,30 95,40 100,50 C105,40 115,30 130,30 C150,30 170,50 170,80 C170,120 100,170 100,170 Z" 
+                              fill="rgba(255, 255, 255, 0.95)"/>
+                    </svg>
+                    <div class="heart-sparkles">
+                        <span class="sparkle">✨</span>
+                        <span class="sparkle">💕</span>
+                        <span class="sparkle">✨</span>
+                        <span class="sparkle">💖</span>
+                    </div>
+                </div>
             </div>
-            <h1 class="screen-title pink-text">என் வாழ்க்கையின் வருங்கால துணைவிக்கு<br/>இனிய வாலென்டைன்ஸ் நாள் வாழ்த்துகள்.</h1>
+            <h1 class="screen-title pink-text tamil-text">என் வாழ்க்கையின் வருங்கால துணைவிக்கு<br/>இனிய வாலென்டைன்ஸ் நாள் வாழ்த்துகள்</h1>
+            <!-- <p class="subtitle-text english-translation">To my future life partner,<br/>Happy Valentine's Day</p> -->
             <button class="tap-button outline" onclick="nextScreen(3)">Tap here</button>
         </div>
     </div>
@@ -122,7 +138,51 @@
                 <p>Forever yours,</p>
                 <p class="signature-name">With all my love ❤️</p>
             </div>
-            <button class="tap-button" onclick="restartExperience()">Start Over</button>
+            <button class="tap-button" onclick="nextScreen(7)">Continue</button>
+        </div>
+    </div>
+
+    <!-- Screen 7: Surprise Gift -->
+    <div class="screen" id="screen-7">
+        <div class="screen-content">
+            <div class="gift-container">
+                <!-- Step 1: Question -->
+                <div class="question-step" id="questionStep">
+                    <h1 class="love-question">Do You Love Me? 💕</h1>
+                    <div class="answer-buttons">
+                        <button class="yes-button" onclick="handleYes()">Yes! ❤️</button>
+                        <button class="no-button" id="noButton" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Gift Reveal (hidden initially) -->
+                <div class="gift-step" id="giftStep" style="display: none;">
+                    <h2 class="surprise-title">🎁 A Special Surprise For You! 🎁</h2>
+                    <div class="gift-image-wrapper">
+                        <img src="Gift.png" alt="Gift for you" class="gift-image">
+                    </div>
+                    <button class="tap-button" onclick="showCelebration()" style="margin-top: 30px;">
+                        Continue ❤️
+                    </button>
+                </div>
+                
+                <!-- Step 3: Celebration (hidden initially) -->
+                <div class="celebration-step" id="celebrationStep" style="display: none;">
+                    <div class="celebration-hearts">
+                        💕 ❤️ 💖
+                    </div>
+                    <h1 class="celebration-title">
+                        I knew it! 💕
+                    </h1>
+                    <p class="celebration-message">
+                        You've made me the happiest person in the world! ❤️<br>
+                        I love you more than words can express, my dear Abinaya.
+                    </p>
+                    <button class="tap-button" onclick="restartExperience()">
+                        Start Over ❤️
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
